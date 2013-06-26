@@ -1,6 +1,6 @@
 # -*- coding: cp936 -*-
 # 基于用户的协同过滤算法
-# atthor:John刚
+# atthor:John
 # date : 2013-05-19
 
 import random
