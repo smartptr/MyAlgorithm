@@ -1,4 +1,4 @@
-UserCF
+myAlgorithm
 ======
 
-UserCF
+
