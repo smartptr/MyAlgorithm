@@ -1,5 +1,5 @@
 /*
-Calculate the}
+Calculate the sum: sum{n^a/b^n|n=1,2,3,...n...无穷大} 1<=a,b<=10
 */
 #include <vector>
 #include <list>
