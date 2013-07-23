@@ -44,16 +44,18 @@ int main()
             if(sum == 0)
             {
                 mp[sum].mmin = 0;
-                mp[sum].mmax = i;
+                mp[sum].mmax = i+1;
                 continue;
             }
-            mp[sum].mmin = min(mp[sum].mmin, i);
-            mp[sum].mmax = max(mp[sum].mmax, i);
+            mp[sum].mmin = min(mp[sum].mmin, i+1);
+            mp[sum].mmax = max(mp[sum].mmax, i+1);
+            cout << mp[sum].mmin << "  " << mp[sum].mmax << endl;
         }
         int mmax = 0;
         for(map<int ,node>::iterator it = mp.begin(); it != mp.end(); ++it)
         {
-            mmax = max(mmax,it->second.mmax - it->second.mmin+1);
+            cout << it->second.mmax << "  " << it->second.mmin << endl;
+            mmax = max(mmax,it->second.mmax - it->second.mmin);
         }
         cout << mmax << endl;
     }
