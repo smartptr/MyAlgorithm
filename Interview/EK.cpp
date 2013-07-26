@@ -44,7 +44,7 @@ void addEdge(int u, int v, int c)
     head[v] = tot;
 }
 
-int bfs(int s, int t)
+int bfs(int s, int t) //找增广路
 {
     queue<int> q;
     flow[s] = INT_MAX;
