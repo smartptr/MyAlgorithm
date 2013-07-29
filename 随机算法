@@ -88,6 +88,77 @@ public void reduce(TextPair key, Iterator value, OutputCollector collector, int 
  //collect data
 …….
 }
+python实现：
+import random
+SAMPLE_COUNT = 10
+ 
+# Force the value of the seed so the results are repeatable
+random.seed(12345)
+ 
+sample_titles = []
+for index, line in enumerate(open("enwiki-20091103-all-titles-in-ns0")):
+        # Generate the reservoir
+        if index < SAMPLE_COUNT:
+                sample_titles.append(line)
+        else:                  
+                # Randomly replace elements in the reservoir
+                # with a decreasing probability.             
+                # Choose an integer between 0 and index (inclusive)               
+                r = random.randint(0, index)               
+                if r < SAMPLE_COUNT:                       
+                        sample_titles[r] = line
+print sample_titles
+java实现1：
+java-蓄水池抽样-要求从N个元素中随机的抽取k个元素，其中N无法确定
+blog：http://bylijinnan.iteye.com/blog/1468985
+    import java.util.Arrays;  
+    import java.util.Random;  
+      
+      
+    public class ReservoirSampling {  
+      
+        /** 
+         * 题目：给定一个数据流，其中包含无穷尽的搜索关键字（比如，人们在谷歌搜索时不断输入的关键字）。 
+         * 如何才能从这个无穷尽的流中随机的选取1000个关键字？ 
+         * Reservoir Sampling 
+         * I read some proof on the internet,but I found they are hard to understand except this: 
+         * http://www.cnblogs.com/HappyAngel/archive/2011/02/07/1949762.html 
+         * It's excellent. 
+         */  
+        public static void main(String[] args) {  
+            int k=100;  
+            int n=1000;  
+            int[] data=new int[n];  
+            for(int i=0;i<n;i++){  
+                data[i]=i;  
+            }  
+            int[] sample=reservoirSampling(data,k);  
+            System.out.println(Arrays.toString(sample));  
+        }  
+          
+        public static int[] reservoirSampling(int[] data,int k){  
+            if(data==null){  
+                return new int[0];//In <Effective Java>,it advises to return int[0] instead of null.Am i doing right in this case?  
+            }  
+            if(data.length<k){  
+                return new int[0];  
+            }  
+            int[] sample=new int[k];  
+            int n=data.length;  
+            for(int i=0;i<n;i++){  
+                if(i<k){  
+                    sample[i]=data[i];  
+                }else{  
+                    int j=new Random().nextInt(i);  
+                    if(j<k){  
+                        sample[j]=data[i];  
+                    }  
+                }  
+            }  
+            return sample;  
+        }  
+      
+    }  
 利用上述算法，在m=4， n=10， 经过100w次选取之后， 计算了每个位置被选择的选择的概率
 位置   概率
 1 	0.400387
