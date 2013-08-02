@@ -1,4 +1,5 @@
 //二维单调栈的应用，求最大的全部是1的矩阵，根据行累加看成一维单调栈处理
+//poj3494
 #include <iostream>
 #include <cstdio>
 #include <cmath>
@@ -69,4 +70,16 @@ int main()
     }
     return 0;
 }
+/*
+2 2
+0 0
+0 0
+4 4
+0 0 0 0
+0 1 1 0
+0 1 1 0
+0 0 0 0
 
+0
+4
+*/
